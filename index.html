@@ -4,10 +4,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="./src/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet">
     <title>Simon Game</title>
   </head>
   <body>
     <div id="root"></div>
+    <div class="container">
+      <div class="simon">
+        <div class="simon__button simon__button--red"></div>
+        <div class="simon__button simon__button--green"></div>
+        <div class="simon__button simon__button--yellow"></div>
+        <div class="simon__button simon__button--blue"></div>
+        <div class="simon__settings">
+          <h1>Simon</h1>
+          <div class="simon__settings__buttons">
+            <div class="simon__settings__count">
+              <span>05</span>
+              <span>Count</span>
+            </div>            
+            <div class="simon__settings__control">
+              <span class="simon__settings__button simon__settings__button--strict"></span>
+              <span>Strict</span>
+            </div>
+            <div class="simon__settings__control">
+              <span class="simon__settings__button simon__settings__button--start"></span>
+              <span>Start</span>
+            </div>
+          </div>
+          <div class="simon__settings__toggle"></div>
+        </div>
+      </div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

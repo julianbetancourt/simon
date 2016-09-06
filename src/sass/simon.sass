@@ -1,0 +1,100 @@
+.simon
+  background: rgb(88, 88, 88)
+  width: 19em //304px
+  height: 19em //304px
+  border-radius: 50%
+  display: flex
+  justify-content: center
+  align-items: center
+  position: relative
+  font-family: 'Playfair Display', serif
+  font-style: italic
+  border: 5px solid #2A2F34
+  &__button
+    border: 5px solid #2A2F34
+    width: 50%
+    height: 50%
+    position: absolute
+  &__button--red, &__button--green
+    top: 0
+  &__button--red, &__button--blue
+    right: 0
+  &__button--green, &__button--yellow
+    left: 0
+  &__button--yellow, &__button--blue
+    bottom: 0
+  &__button--red
+    background: $red
+    border-top-right-radius: 100%
+  &__button--green
+    background: $green
+    border-top-left-radius: 100%
+  &__button--yellow
+    background: $yellow
+    border-bottom-left-radius: 100%
+  &__button--blue
+    background: $blue
+    border-bottom-right-radius: 100%
+  &__settings
+    background: #F3EBC5
+    height: 11em
+    width: 11em
+    border-radius: 50%
+    position: absolute
+    border: 10px solid #2A2F34
+    display: flex
+    flex-direction: column
+    text-align: center
+    &__buttons
+      display: flex
+      justify-content: space-around
+    &__count, &__control
+      display: flex
+      flex-direction: column
+      justify-content: flex-end
+    &__button
+      display: inline-block
+      width: 15px
+      height: 15px
+      background: pink
+      border-radius: 50%
+      margin: 0 auto
+      cursor: pointer
+      &--start
+        background: #49C79B
+      &--strict
+        background: #F3AF5D
+    &__toggle
+      height: 1em
+      width: 3em
+      background: #273a6b
+      display: inline-block
+      margin: .5em auto 0
+
+  h1
+    margin: .2em 0 .5em
+
+
+
+@media (min-width: 566px)
+  .simon
+    width: 537px
+    height: 537px
+    border-width: 7.5px
+    &__button
+      border-width: 7.5px
+    &__settings
+      width: 270px
+      height: 270px
+      justify-content: center
+      padding-bottom: 1em
+      border-width: 15px
+      &__buttons
+        font-size: 1.3em
+      &__button
+        height: 25px
+        width: 25px
+      &__toggle
+        margin: 1em auto 0
+        width: 4em
+        height: 1.4em
