@@ -1,0 +1,3 @@
+export const TOGGLE_ON = 'TOGGLE_ON';
+export const TOGGLE_STRICT = 'TOGGLE_STRICT';
+export const ADD_TO_CURRENT_SERIES = 'ADD_TO_CURRENT_SERIES'
