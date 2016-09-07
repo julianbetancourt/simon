@@ -19,7 +19,8 @@ const simon = (state = initialState.simon, action) => {
       let currentSeries = state.currentSeries.slice(0);
       currentSeries.push(colors[random]);
       return Object.assign({}, state, {
-        currentSeries
+        currentSeries,
+        playerSeries: []
       });
     default:
       return state;
