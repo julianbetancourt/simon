@@ -10,6 +10,7 @@
   font-family: 'Playfair Display', serif
   font-style: italic
   border: 5px solid #2A2F34
+  user-select: none
   &__button
     border: 5px solid #2A2F34
     width: 50%
@@ -65,12 +66,61 @@
         background: #49C79B
       &--strict
         background: #F3AF5D
-    &__toggle
-      display: inline-block
-      margin: .5em auto 0
+
+
 
   h1
     margin: .2em 0 .5em
+
+
+.simon__settings__toggle
+  display: inline-block
+  margin: .5em auto 0
+  height: 15px
+  width: 45px
+  border-radius: 999em
+  position: relative
+  cursor: pointer
+  transition: all .3s ease-in
+  .indicator
+    height: 100%
+    width: 15px
+    border-radius: 50%
+    display: block
+    position: absolute
+    transition: all .3s ease-in
+    &::after
+      font-style: normal
+      font-size: .8em
+      position: absolute
+
+
+.simon__settings__toggle.is-off
+  background: #323232
+  position: relative
+  .indicator
+    background: lighten(#323232, 20%)
+    left: 0
+
+    &::after
+      content: 'off'
+      color: white
+      left: 1.9em
+      bottom: .07em
+      //transition: all .3s ease-in-out
+
+.simon__settings__toggle.is-on
+  background: darken(#49C79B, 30%)
+  .indicator
+    background: #49C79B
+    right: 0
+    &::after
+      content: 'on'
+      color: white
+      left: -1.9em
+      bottom: .07em
+      //transition: all .3s ease-in-out
+
 
 
 
@@ -94,4 +144,15 @@
         width: 25px
       &__toggle
         margin: 1em auto 0
-        min-width: 55px
+        width: 75px
+        height: 25px
+        .indicator
+          width: 25px
+          &::after
+            font-size: 1em
+      &__toggle.is-off .indicator::after
+        left: 2.9em
+        bottom: .2em
+      &__toggle.is-on .indicator::after
+        left: -2.9em
+        bottom: .2em

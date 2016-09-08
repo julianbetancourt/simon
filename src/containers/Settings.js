@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Strict from './Strict';
 import Count from './Count';
 import Start from './Start';
+import On from './On';
 
 class Settings extends Component {
   render() {
@@ -13,6 +14,7 @@ class Settings extends Component {
           <Strict />
           <Start />
         </div>
+        <On />
       </div>
     );
 
