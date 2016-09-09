@@ -1,15 +1,9 @@
 import initialState from './initialState';
 import * as types from '../actions/actionTypes';
+import domClick from '../utils/domClick';
 
 const colors = ['red', 'green', 'blue', 'yellow'];
-export const sounds = {
-  red: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3'),
-  green: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3'),
-  blue: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3'),
-  yellow: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3'),
-  wrong: new Audio('http://www.soundjay.com/misc/fail-buzzer-04.mp3'),
-  success: new Audio('http://soundbible.com/grab.php?id=1003&type=mp3')
-};
+
 
 const simon = (state = initialState.simon, action) => {
   switch (action.type) {
@@ -31,7 +25,7 @@ const simon = (state = initialState.simon, action) => {
       currentSeries.forEach((c, i) => {
         setTimeout(() => {
           domClick(c)
-        }, 600 * i)
+        }, 700 * i)
       })
       return Object.assign({}, state, {
         currentSeries,
@@ -43,11 +37,10 @@ const simon = (state = initialState.simon, action) => {
       let newSeries = state.playerSeries.slice(0);
       newSeries[newSeries.length] = action.color;
       if (state.currentSeries[newSeries.length - 1] !== newSeries[newSeries.length - 1]) {
-        // console.log(state.playerSeries);
-        // console.log(state.strict);
+
         return Object.assign({}, state, {
           playerSeries: [],
-          lost: true
+          lost: true,
         })
 
       } else {
@@ -63,18 +56,5 @@ const simon = (state = initialState.simon, action) => {
   }
 }
 
-export const domClick = (color) => {
-
-
-  let element = document.querySelector('.simon__button--'+color);
-  element.classList.add('is-active');
-
-  let clickID = setTimeout(() => {
-    element.classList.remove('is-active');
-    sounds[color].play();
-    clearTimeout(clickID);
-  }, 100);
-
-}
 
 export default simon;

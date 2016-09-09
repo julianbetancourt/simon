@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import Simon from './Simon';
 import '../sass/main.sass';
+import Buttons from './Buttons';
+import Settings from './Settings';
 
 class App extends Component {
   render() {
     return (
       <div className="container">
-        <Simon />
+        <div className="simon">
+          <Buttons />
+          <Settings />
+        </div>
       </div>
     );
   }

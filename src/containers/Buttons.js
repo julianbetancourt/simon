@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import SimonButton from '../components/SimonButton';
 import { connect } from 'react-redux';
-import { domClick } from '../reducers/simon';
+import domClick from '../utils/domClick';
 import { addToPlayerSeries, toggleOn, simonClick } from '../actions';
-import { sounds } from '../reducers/simon';
+import sounds  from '../utils/sounds';
 import _ from 'lodash';
 
 class Buttons extends Component {
@@ -12,14 +12,10 @@ class Buttons extends Component {
     this.handleMove = this.handleMove.bind(this);
   }
   componentDidUpdate() {
-    // console.log(this.props.strict);
-    // console.log(_.isEqual(this.props.playerSeries, []));
-    // console.log(this.props.currentSeries.length > 0);
-    if (this.props.strict && _.isEqual(this.props.playerSeries, []) && this.props.currentSeries.length > 0 && this.props.lost) {
+    if (this.props.strict && _.isEqual(this.props.playerSeries, []) && this.props.currentSeries.length > 0 && this.props.lost) { //if strict and player clicked wrong button
       this.props.toggleOn();
       sounds.wrong.play();
-
-    } else if (!this.props.strict && _.isEqual(this.props.playerSeries, []) && this.props.currentSeries.length > 0 && this.props.lost) {
+    } else if (!this.props.strict && _.isEqual(this.props.playerSeries, []) && this.props.currentSeries.length > 0 && this.props.lost) { //if not strict and player clicked wrong button
       sounds.wrong.play();
       setTimeout(() => {
         this.props.currentSeries.forEach((c, i) => {
@@ -28,26 +24,22 @@ class Buttons extends Component {
           }, 600 * i)
         })
       }, 1000)
-
-    } else if (this.props.playerSeries.length === 20) {
+    } else if (this.props.playerSeries.length === 20) { //if reached 20
       sounds.success.play();
       this.props.toggleOn();
-    } else if (this.props.playerSeries.length === this.props.currentSeries.length && this.props.currentSeries.length > 0) {
+    } else if (this.props.playerSeries.length === this.props.currentSeries.length && this.props.currentSeries.length > 0) { //if player clicked the correct series
       const r = Math.floor(Math.random() * 4);
       setTimeout(() => {
         this.props.simonClick(r)
       }, 1000);
-
     }
   }
   handleMove(e) {
-    const { playerSeries, player, addToPlayerSeries, currentSeries } = this.props;
+    const { player, addToPlayerSeries } = this.props;
     if (player) {
       let color = e.target.className.slice(29);
       domClick(color);
       addToPlayerSeries(color);
-      // console.log(playerSeries);
-      // if (playerSeries[playerSeries.length - 1] !== )
     }
   }
   render() {

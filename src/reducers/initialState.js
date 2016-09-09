@@ -4,7 +4,6 @@ export default {
     isOn: false,
     currentSeries: [],
     playerSeries: [],
-    started: false,
     player: false,
     lost: false
   }
