@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { domClick } from '../reducers/simon';
 import { addToPlayerSeries, toggleOn, simonClick } from '../actions';
 import { sounds } from '../reducers/simon';
+import _ from 'lodash';
 
 class Buttons extends Component {
   constructor(props) {
@@ -11,10 +12,24 @@ class Buttons extends Component {
     this.handleMove = this.handleMove.bind(this);
   }
   componentDidUpdate() {
-    if (this.props.playerSeries === 'lost') {
-      sounds.wrong.play();
+    // console.log(this.props.strict);
+    // console.log(_.isEqual(this.props.playerSeries, []));
+    // console.log(this.props.currentSeries.length > 0);
+    if (this.props.strict && _.isEqual(this.props.playerSeries, []) && this.props.currentSeries.length > 0 && this.props.lost) {
       this.props.toggleOn();
-    } else if (this.props.playerSeries.length === 5) {
+      sounds.wrong.play();
+
+    } else if (!this.props.strict && _.isEqual(this.props.playerSeries, []) && this.props.currentSeries.length > 0 && this.props.lost) {
+      sounds.wrong.play();
+      setTimeout(() => {
+        this.props.currentSeries.forEach((c, i) => {
+          setTimeout(() => {
+            domClick(c)
+          }, 600 * i)
+        })
+      }, 1000)
+
+    } else if (this.props.playerSeries.length === 20) {
       sounds.success.play();
       this.props.toggleOn();
     } else if (this.props.playerSeries.length === this.props.currentSeries.length && this.props.currentSeries.length > 0) {
@@ -53,7 +68,9 @@ const mapStateToProps = (state) => {
     currentSeries: state.simon.currentSeries,
     playerSeries: state.simon.playerSeries,
     player: state.simon.player,
-    isOn: state.simon.isOn
+    isOn: state.simon.isOn,
+    strict: state.simon.strict,
+    lost: state.simon.lost
   }
 }
 

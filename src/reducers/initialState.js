@@ -5,6 +5,7 @@ export default {
     currentSeries: [],
     playerSeries: [],
     started: false,
-    player: false
+    player: false,
+    lost: false
   }
 }

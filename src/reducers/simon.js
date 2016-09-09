@@ -7,7 +7,7 @@ export const sounds = {
   green: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3'),
   blue: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3'),
   yellow: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3'),
-  wrong: new Audio('http://www.soundjay.com/misc/fail-trombone-03.mp3'),
+  wrong: new Audio('http://www.soundjay.com/misc/fail-buzzer-04.mp3'),
   success: new Audio('http://soundbible.com/grab.php?id=1003&type=mp3')
 };
 
@@ -18,7 +18,8 @@ const simon = (state = initialState.simon, action) => {
         isOn: !state.isOn,
         currentSeries: [],
         playerSeries: [ ],
-        player: false
+        player: false,
+        lost: false
       })
     case types.TOGGLE_STRICT:
       return Object.assign({}, state, {
@@ -35,21 +36,24 @@ const simon = (state = initialState.simon, action) => {
       return Object.assign({}, state, {
         currentSeries,
         playerSeries: [],
-        player: true
+        player: true,
+        lost: false
       });
     case types.ADD_TO_PLAYER_SERIES:
       let newSeries = state.playerSeries.slice(0);
       newSeries[newSeries.length] = action.color;
       if (state.currentSeries[newSeries.length - 1] !== newSeries[newSeries.length - 1]) {
-        console.log(state.playerSeries);
-        console.log(state.strict);
+        // console.log(state.playerSeries);
+        // console.log(state.strict);
         return Object.assign({}, state, {
-          playerSeries: 'lost'
+          playerSeries: [],
+          lost: true
         })
 
       } else {
         return Object.assign({}, state, {
-          playerSeries: [...state.playerSeries, action.color]
+          playerSeries: [...state.playerSeries, action.color],
+          lost: false
         })
       }
 
