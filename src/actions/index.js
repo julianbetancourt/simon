@@ -12,8 +12,23 @@ export const toggleStrict = () => {
   }
 }
 
-export const addToCurrentSeries = () => {
+export const simonClick = (button) => {
   return {
-    type: types.ADD_TO_CURRENT_SERIES
+    type: types.SIMON_CLICK,
+    button
+  }
+}
+
+export const addToPlayerSeries = (color) => {
+  return {
+    type: types.ADD_TO_PLAYER_SERIES,
+    color
+  }
+}
+
+export const playerClick = (button) => {
+  return {
+    type: types.PLAYER_CLICK,
+    button
   }
 }

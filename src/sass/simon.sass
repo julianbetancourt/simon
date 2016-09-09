@@ -122,6 +122,28 @@
       //transition: all .3s ease-in-out
 
 
+.simon__button--red.is-active
+  background: lighten($red, 10%)
+.simon__button--blue.is-active
+  background: lighten($blue, 10%)
+
+.simon__button--yellow.is-active
+  background: lighten($yellow, 10%)
+
+.simon__button--green.is-active
+  background: lighten($green, 10%)
+
+.simon__settings__button.is-active::after
+  content: ''
+  height: .3em
+  width: .3em
+  background: black
+  display: inline-block
+  border-radius: 50%
+  margin-bottom: .42em
+
+
+
 
 
 @media (min-width: 566px)
@@ -156,3 +178,6 @@
       &__toggle.is-on .indicator::after
         left: -2.9em
         bottom: .2em
+  .simon__settings__button.is-active::after
+    margin-bottom: .32em
+    margin-left: .05em

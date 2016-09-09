@@ -3,6 +3,8 @@ export default {
     strict: false,
     isOn: false,
     currentSeries: [],
-    playerSeries: []
+    playerSeries: [],
+    started: false,
+    player: false
   }
 }

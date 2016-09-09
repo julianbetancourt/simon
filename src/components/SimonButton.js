@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SimonButton = ({color}) => {
+const SimonButton = ({color, onClick}) => {
   return (
-    <div className={`simon__button simon__button--${color}`}></div>
+    <div onClick={onClick} className={`simon__button simon__button--${color}`}></div>
   );
 }
 
