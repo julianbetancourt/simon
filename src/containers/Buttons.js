@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import domClick from '../utils/domClick';
 import { addToPlayerSeries, toggleOn, simonClick } from '../actions';
 import sounds  from '../utils/sounds';
-import _ from 'lodash';
+import isEqual from 'lodash/isEqual';
 
 class Buttons extends Component {
   constructor(props) {
@@ -12,10 +12,10 @@ class Buttons extends Component {
     this.handleMove = this.handleMove.bind(this);
   }
   componentDidUpdate() {
-    if (this.props.strict && _.isEqual(this.props.playerSeries, []) && this.props.currentSeries.length > 0 && this.props.lost) { //if strict and player clicked wrong button
+    if (this.props.strict && isEqual(this.props.playerSeries, []) && this.props.currentSeries.length > 0 && this.props.lost) { //if strict and player clicked wrong button
       this.props.toggleOn();
       sounds.wrong.play();
-    } else if (!this.props.strict && _.isEqual(this.props.playerSeries, []) && this.props.currentSeries.length > 0 && this.props.lost) { //if not strict and player clicked wrong button
+    } else if (!this.props.strict && isEqual(this.props.playerSeries, []) && this.props.currentSeries.length > 0 && this.props.lost) { //if not strict and player clicked wrong button
       sounds.wrong.play();
       setTimeout(() => {
         this.props.currentSeries.forEach((c, i) => {
